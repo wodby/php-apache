@@ -12,7 +12,6 @@ env:
     - LATEST_APACHE_VER=2.4
   matrix:
     - APACHE_VER=2.4
-    - APACHE_VER=2.2
 
 before_install:
   - sudo apt-get update

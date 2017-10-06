@@ -7,7 +7,7 @@ if [[ -n "${DEBUG}" ]]; then
 fi
 
 apache_exec() {
-    docker-compose -f test/docker-compose.yml exec nginx "${@}"
+    docker-compose -f test/docker-compose.yml exec apache "${@}"
 }
 
 docker-compose -f test/docker-compose.yml up -d
