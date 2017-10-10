@@ -3,15 +3,20 @@
 APACHE_VER ?= 2.4
 TAG ?= $(APACHE_VER)
 
+FROM_TAG = $(APACHE_VER)
 REPO = wodby/php-apache
 NAME = php-apache-$(APACHE_VER)
+
+ifneq ($(FROM_STABILITY_TAG),)
+    FROM_TAG := $(FROM_TAG)-$(FROM_STABILITY_TAG)
+endif
 
 .PHONY: build test push shell run start stop logs clean release
 
 default: build
 
 build:
-	docker build -t $(REPO):$(TAG) --build-arg APACHE_VER=$(APACHE_VER) ./
+	docker build -t $(REPO):$(TAG) --build-arg FROM_TAG=$(FROM_TAG) ./
 
 test:
 	IMAGE=$(REPO):$(TAG) ./test.sh
