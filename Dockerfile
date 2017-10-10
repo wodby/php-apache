@@ -1,6 +1,6 @@
-ARG APACHE_VER
+ARG FROM_TAG
 
-FROM wodby/apache:${APACHE_VER}
+FROM wodby/apache:${FROM_TAG}
 
 ENV WODBY_DIR_FILES /mnt/files
 
