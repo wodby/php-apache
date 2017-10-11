@@ -1,4 +1,4 @@
-language: python
+language: bash
 
 sudo: required
 
@@ -32,9 +32,7 @@ after_success: |
 
     if [[ -n "${TRAVIS_TAG}" ]]; then
       make release TAG="${APACHE_VER}-${TRAVIS_TAG}"
-    fi
-
-    if [[ "${APACHE_VER}" == "${LATEST_APACHE_VER}" ]]; then
+    elif [[ "${APACHE_VER}" == "${LATEST_APACHE_VER}" ]]; then
       make release TAG="latest"
     fi
   fi
