@@ -12,15 +12,15 @@
 * [Travis CI builds](https://travis-ci.org/wodby/php-apache) 
 * [Docker Hub](https://hub.docker.com/r/wodby/php-apache)
 
-For better reliability we release images with stability tags (`wodby/php-apache:2.4-X.X.X`) which correspond to git tags. We **strongly recommend** using images only with stability tags. Below listed basic tags:
+Supported tags and respective `Dockerfile` links:
 
-| Image tag (Dockerfile)                                                     | Apache |
-| -------------------------------------------------------------------------- | ------ |
-| [2.4 (latest)](https://github.com/wodby/php-apache/tree/master/Dockerfile) | 2.4    |
+* `2.4`, `latest` [_(Dockerfile)_](https://github.com/wodby/php-apache/tree/master/Dockerfile)
+
+For better reliability we additionally release images with stability tags (`wodby/php-apache:2.4-X.X.X`) which correspond to [git tags](https://github.com/wodby/php-apache/releases). We **strongly recommend** using images only with stability tags. Below listed basic tags:
 
 ## Environment Variables
 
-See at [wodby/apache](https://github.com/wodby/apache)
+See more at [wodby/apache](https://github.com/wodby/apache)
 
 | Variable                       | Default Value | Description |
 | ------------------------------ | ------------- | ----------- |
