@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/wodby/php-apache.svg?branch=master)](https://travis-ci.org/wodby/php-apache)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wodby/php-apache.svg)](https://hub.docker.com/r/wodby/php-apache)
 [![Docker Stars](https://img.shields.io/docker/stars/wodby/php-apache.svg)](https://hub.docker.com/r/wodby/php-apache)
+[![Docker Layers](https://images.microbadger.com/badges/image/wodby/php-apache.svg)](https://microbadger.com/images/wodby/php-apache)
 [![Wodby Slack](http://slack.wodby.com/badge.svg)](http://slack.wodby.com)
 
 ## Docker Images
@@ -14,7 +15,7 @@
 
 Supported tags and respective `Dockerfile` links:
 
-* `2.4`, `latest` [_(Dockerfile)_](https://github.com/wodby/php-apache/tree/master/Dockerfile)
+* `2`, `2.4`, `latest` [_(Dockerfile)_](https://github.com/wodby/php-apache/tree/master/Dockerfile)
 
 For better reliability we additionally release images with stability tags (`wodby/php-apache:2.4-X.X.X`) which correspond to [git tags](https://github.com/wodby/php-apache/releases). We **strongly recommend** using images only with stability tags. Below listed basic tags:
 
