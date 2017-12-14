@@ -9,6 +9,10 @@
       Require all granted
     </Directory>
 
+    <Location />
+      Require all granted
+    </Location>
+
     <Proxy "fcgi://{{ getenv "APACHE_BACKEND_HOST" }}:{{ getenv "APACHE_BACKEND_PORT" "9000" }}/">
         ProxySet connectiontimeout={{ getenv "APACHE_FCGI_PROXY_CONN_TIMEOUT" "5" }} timeout={{ getenv "APACHE_FCGI_PROXY_TIMEOUT" "60" }}
     </Proxy>
