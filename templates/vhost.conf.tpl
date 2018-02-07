@@ -9,12 +9,18 @@
       Require all granted
     </Directory>
 
-    <Proxy "fcgi://{{ getenv "APACHE_BACKEND_HOST" }}:{{ getenv "APACHE_BACKEND_PORT" "9000" }}/">
+    <Location />
+      Require all granted
+    </Location>
+
+    <Proxy "fcgi://{{ getenv "APACHE_BACKEND_HOST" "php" }}:{{ getenv "APACHE_BACKEND_PORT" "9000" }}/">
         ProxySet connectiontimeout={{ getenv "APACHE_FCGI_PROXY_CONN_TIMEOUT" "5" }} timeout={{ getenv "APACHE_FCGI_PROXY_TIMEOUT" "60" }}
     </Proxy>
     <FilesMatch "\.php$">
         <If "-f %{REQUEST_FILENAME}">
-            SetHandler "proxy:fcgi://{{ getenv "APACHE_BACKEND_HOST" }}:{{ getenv "APACHE_BACKEND_PORT" "9000" }}"
+            SetHandler "proxy:fcgi://{{ getenv "APACHE_BACKEND_HOST" "php" }}:{{ getenv "APACHE_BACKEND_PORT" "9000" }}"
         </If>
     </FilesMatch>
+
+    Include conf/healthz.conf
 </VirtualHost>

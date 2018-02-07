@@ -3,12 +3,12 @@
 APACHE_VER ?= 2.4
 TAG ?= $(APACHE_VER)
 
-FROM_TAG = $(APACHE_VER)
+BASE_IMAGE_TAG = $(APACHE_VER)
 REPO = wodby/php-apache
 NAME = php-apache-$(APACHE_VER)
 
-ifneq ($(FROM_STABILITY_TAG),)
-    FROM_TAG := $(FROM_TAG)-$(FROM_STABILITY_TAG)
+ifneq ($(BASE_IMAGE_STABILITY_TAG),)
+    BASE_IMAGE_TAG := $(BASE_IMAGE_TAG)-$(BASE_IMAGE_STABILITY_TAG)
 endif
 
 ifneq ($(STABILITY_TAG),)
@@ -22,7 +22,7 @@ endif
 default: build
 
 build:
-	docker build -t $(REPO):$(TAG) --build-arg FROM_TAG=$(FROM_TAG) ./
+	docker build -t $(REPO):$(TAG) --build-arg BASE_IMAGE_TAG=$(BASE_IMAGE_TAG) ./
 
 test:
 	IMAGE=$(REPO):$(TAG) ./test.sh

@@ -1,26 +1,13 @@
 language: bash
 
-sudo: required
-
 services:
   - docker
 
 env:
   global:
-    - DOCKER_COMPOSE_VERSION=1.10.0
-    - DOCKER_VERSION=17.06.2
     - LATEST_TAG=2.4
-    - FROM_STABILITY_TAG=2.0.1
   matrix:
     - TAG=2.4 APACHE_VER=2.4 EXTRA_TAG=2
-
-install:
-  - sudo apt-get update
-  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce="${DOCKER_VERSION}~ce-0~ubuntu"
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
 
 script:
   - make && make test
@@ -43,3 +30,9 @@ after_success: |
       make release TAG="latest"
     fi
   fi
+
+notifications:
+  on_failure: never
+  slack:
+    secure: |
+      ZxnSsP7kIDfYGRbH/WLL0B0gOu/PU1QgKvToUMGCvqW5U2eXjrHf0vxFqr5cS2bCE18ydn1I3eKFA4hvqiJGlz9MfScNB4oiarvKNQ8Mpy0MXOm9/mPuMnZaKmQkNF7lvc1Ak1NkasjNwNLKjZM9Pr3HoThSeqj4o2xLacEEDwlAHqeRE/uyCMAeHSvBv/T+WyjrZ5K7Fv4tz6AobQAtDA45ZeoRpS/rdRoOnS43d2qo7JaYmcy+6O00x4JPJ8hllLXu6WkNKexnoJkfsygTCC43kICfDUJcE4X1EuJG+h+0ztu/OhoIpMXzga1t1oAOBLvx9mmNaPpEr3ghjAlrmTATDhcxo3JXPJIQKhETEx7vwVIyp2RZpx5O2c1upM02JwsF38Evi5NuE2rhuUW+D7HY1/4RW3zRcqKGW35GjZlYmvdGTKsyMudviHyFM5dDMwFIc6xlyo59L7k7t26Wr7IJ1FxvK0JHGOKqBHN22qxBAVGvbOf37S0+mk4KWx7pqwSHq24re6+HckfH2S7u25C7ZTW7XaJiyn5bZhIoYcyHjJlFpJrrzw1vAMduYQhA+VujV/d8WCZsouWUIkaJb2SGtiGlca/XanUpOuCuAAvgcObnUcIHQCAYRvXifz8bH3+WfU1c/qjv29Kox4fOu/wIuF0R54sQwNmSSvaFGC8=

@@ -1,15 +1,32 @@
-ARG FROM_TAG
+ARG BASE_IMAGE_TAG
 
-FROM wodby/apache:${FROM_TAG}
+FROM wodby/apache:${BASE_IMAGE_TAG}
 
-ENV WODBY_DIR_FILES /mnt/files
+ENV FILES_DIR="/mnt/files"
 
 USER root
 
-RUN rm /etc/gotpl/vhost.conf.tpl && \
-    mkdir -p $WODBY_DIR_FILES
+RUN set -ex; \
+    \
+    addgroup -S -g 82 www-data; \
+    adduser -u 82 -D -S -s /bin/bash -G www-data www-data; \
+    adduser apache www-data; \
+    \
+    mkdir -p "${FILES_DIR}"; \
+    chown -R www-data:www-data /usr/local/apache2; \
+    \
+    # Script to fix volumes permissions via sudo.
+    echo "chown www-data:www-data ${HTML_DIR} ${FILES_DIR}" > /usr/local/bin/fix-volumes-permissions.sh; \
+    chmod +x /usr/local/bin/fix-volumes-permissions.sh; \
+    \
+    # Configure sudoers
+    { \
+        echo -n 'www-data ALL=(root) NOPASSWD: '; \
+        echo -n '/usr/local/bin/fix-volumes-permissions.sh, ' ; \
+        echo '/usr/local/apache2/bin/httpd'; \
+    } | tee /etc/sudoers.d/www-data; \
+    rm /etc/sudoers.d/apache
 
 USER www-data
 
-COPY php.conf.tpl /etc/gotpl/
-COPY init /docker-entrypoint-init.d/
+COPY templates /etc/gotpl/
