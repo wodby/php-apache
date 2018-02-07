@@ -3,8 +3,6 @@ version: "2"
 services:
   apache:
     image: $IMAGE
-    environment:
-      APACHE_BACKEND_HOST: php
     depends_on:
       - php
     volumes:
