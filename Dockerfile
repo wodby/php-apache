@@ -1,6 +1,6 @@
-ARG FROM_TAG
+ARG BASE_IMAGE_TAG
 
-FROM wodby/apache:${FROM_TAG}
+FROM wodby/apache:${BASE_IMAGE_TAG}
 
 ENV WODBY_DIR_FILES /mnt/files
 
