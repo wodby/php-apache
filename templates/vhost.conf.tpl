@@ -21,4 +21,6 @@
             SetHandler "proxy:fcgi://{{ getenv "APACHE_BACKEND_HOST" "php" }}:{{ getenv "APACHE_BACKEND_PORT" "9000" }}"
         </If>
     </FilesMatch>
+
+    Include conf/healthz.conf
 </VirtualHost>
