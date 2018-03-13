@@ -26,6 +26,7 @@ Supported tags and respective `Dockerfile` links:
 | -------------------------------- | --------------- | ----------- |
 | `APACHE_BACKEND_HOST`            | `php`           |             |
 | `APACHE_BACKEND_PORT`            | `9000`          |             |
+| `APACHE_DIRECTORY_INDEX`         | `index.php`     |             |
 | `APACHE_FCGI_PROXY_CONN_TIMEOUT` | `5`             |             |
 | `APACHE_FCGI_PROXY_TIMEOUT`      | `60`            |             |
 | `APACHE_SERVER_NAME`             | `default`       |             |
