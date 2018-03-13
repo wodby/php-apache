@@ -1,7 +1,7 @@
 <VirtualHost *:80>
     DocumentRoot {{ getenv "APACHE_SERVER_ROOT" "/var/www/html" }}
     ServerName {{ getenv "APACHE_SERVER_NAME" "default" }}
-    DirectoryIndex /index.php index.php
+    DirectoryIndex {{ getenv "APACHE_DIRECTORY_INDEX" "index.php" }}
 
     <Directory {{ getenv "APACHE_SERVER_ROOT" "/var/www/html" }}>
       Options Indexes FollowSymLinks
