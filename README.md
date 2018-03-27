@@ -29,6 +29,7 @@ Supported tags and respective `Dockerfile` links:
 | `APACHE_DIRECTORY_INDEX`         | `index.php`     |             |
 | `APACHE_FCGI_PROXY_CONN_TIMEOUT` | `5`             |             |
 | `APACHE_FCGI_PROXY_TIMEOUT`      | `60`            |             |
+| `APACHE_LIMITED_ACCESS`          |                 |             |
 | `APACHE_SERVER_NAME`             | `default`       |             |
 | `APACHE_SERVER_ROOT`             | `/var/www/html` |             |
 
