@@ -4,14 +4,16 @@
     DirectoryIndex {{ getenv "APACHE_DIRECTORY_INDEX" "index.php" }}
 
     <Directory {{ getenv "APACHE_SERVER_ROOT" "/var/www/html" }}>
-      Options Indexes FollowSymLinks
-      AllowOverride All
-      Require all granted
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
     </Directory>
 
+    {{ if not (getenv "APACHE_LIMITED_ACCESS") }}
     <Location />
-      Require all granted
+        Require all granted
     </Location>
+    {{ end }}
 
     <Proxy "fcgi://{{ getenv "APACHE_BACKEND_HOST" "php" }}:{{ getenv "APACHE_BACKEND_PORT" "9000" }}/">
         ProxySet connectiontimeout={{ getenv "APACHE_FCGI_PROXY_CONN_TIMEOUT" "5" }} timeout={{ getenv "APACHE_FCGI_PROXY_TIMEOUT" "60" }}
